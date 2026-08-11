@@ -13,7 +13,7 @@ jobs:
     # أضف هذا السطر إذا كان المشروع داخل مجلد فرعي
     defaults:
       run:
-        working-directory: ./اسم_مجلد_المشروع
+        working-directory: /Test3-main
 
     steps:
     - name: Checkout repository
