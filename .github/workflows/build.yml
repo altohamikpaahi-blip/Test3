@@ -2,13 +2,18 @@ name: Build Android APK
 
 on:
   push:
-    branches: [ "main", "master" ] # حدد اسم الفرع الرئيسي لديك (main أو master)
+    branches: [ "main", "master" ]
   pull_request:
     branches: [ "main", "master" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    # أضف هذا السطر إذا كان المشروع داخل مجلد فرعي
+    defaults:
+      run:
+        working-directory: ./اسم_مجلد_المشروع
 
     steps:
     - name: Checkout repository
@@ -18,7 +23,7 @@ jobs:
       uses: actions/setup-java@v4
       with:
         distribution: 'temurin'
-        java-version: '17' # تأكد أن هذه النسخة متوافقة مع مشروعك (غالباً 17 أو 11)
+        java-version: '17'
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
@@ -30,4 +35,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: app-debug
-        path: app/build/outputs/apk/debug/app-debug.apk
+        path: '**/build/outputs/apk/debug/app-debug.apk'
